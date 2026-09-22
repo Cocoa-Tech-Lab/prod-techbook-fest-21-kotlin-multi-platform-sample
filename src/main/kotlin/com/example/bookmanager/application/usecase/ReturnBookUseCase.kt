@@ -3,10 +3,8 @@ package com.example.bookmanager.application.usecase
 import com.example.bookmanager.application.port.TransactionManager
 import com.example.bookmanager.domain.model.common.RentId
 import com.example.bookmanager.domain.port.RentalRepository
-import kotlin.uuid.ExperimentalUuidApi
-import kotlin.uuid.Uuid
-import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
+import kotlin.uuid.Uuid
 
 /**
  * 返却を記録するユースケース。
@@ -21,7 +19,6 @@ class ReturnBookUseCase(
      * 入力モデル。
      * @property rentId 返却対象の貸出ID
      */
-    @OptIn(ExperimentalUuidApi::class)
     data class ReturnBookInput(
         val rentId: Uuid, // UUID string
     )
@@ -36,7 +33,6 @@ class ReturnBookUseCase(
      * @property returnDeadline 返却期限
      * @property returnedAt 返却日時（返却済みなら非null）
      */
-    @OptIn(ExperimentalTime::class, ExperimentalUuidApi::class)
     data class ReturnBookResult(
         val rentId: Uuid,
         val bookId: Int,
@@ -51,7 +47,6 @@ class ReturnBookUseCase(
      * 返却処理を実施します。
      * @throws IllegalArgumentException 対象の貸出が見つからない場合
      */
-    @OptIn(ExperimentalUuidApi::class, ExperimentalTime::class)
     suspend fun execute(input: ReturnBookInput): ReturnBookResult = txManager.inTransaction {
         val updated = rentalRepository.returnById(
             rentId = RentId(input.rentId)

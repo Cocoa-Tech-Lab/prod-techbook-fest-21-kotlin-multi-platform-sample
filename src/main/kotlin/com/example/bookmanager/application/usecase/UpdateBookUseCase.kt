@@ -5,7 +5,6 @@ import com.example.bookmanager.application.port.TransactionManager
 import com.example.bookmanager.domain.model.common.BookId
 import com.example.bookmanager.domain.port.BookRepository
 import kotlinx.datetime.LocalDate
-import kotlin.time.ExperimentalTime
 
 /**
  * 書籍更新ユースケース。
@@ -46,7 +45,6 @@ class UpdateBookUseCase(
      * 書籍の内容を更新します。
      * @throws IllegalStateException 対象が存在しない場合
      */
-    @OptIn(ExperimentalTime::class)
     suspend fun execute(input: UpdateBookInput): UpdateBookResult = txManager.inTransaction {
         val current = bookRepository.findById(BookId(input.bookId))
             ?: error("book ${input.bookId} doesn't exist!")

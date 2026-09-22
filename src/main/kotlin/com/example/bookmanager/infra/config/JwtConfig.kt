@@ -1,6 +1,6 @@
 package com.example.bookmanager.infra.config
 
-import io.ktor.server.plugins.di.annotations.Property
+import io.ktor.server.plugins.di.annotations.*
 
 /**
  * JWT 設定。application.yaml から読み込みます。

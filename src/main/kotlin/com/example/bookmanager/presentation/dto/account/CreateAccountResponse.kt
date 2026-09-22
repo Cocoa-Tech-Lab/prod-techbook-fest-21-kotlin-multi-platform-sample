@@ -2,7 +2,6 @@ package com.example.bookmanager.presentation.dto.account
 
 import com.example.bookmanager.presentation.dto.common.ApiResponseDataField
 import kotlinx.serialization.Serializable
-import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
 /**
@@ -15,7 +14,6 @@ import kotlin.uuid.Uuid
  * @property email 登録したメールアドレス
  * @property name 表示名（現状はメールローカル部等から生成される想定）
  */
-@OptIn(ExperimentalUuidApi::class)
 @Serializable
 data class CreateAccountResponse(
     val accountId: Uuid,

@@ -6,7 +6,6 @@ import com.example.bookmanager.application.port.TransactionManager
 import com.example.bookmanager.domain.model.common.BookId
 import com.example.bookmanager.domain.model.common.RentStatus
 import com.example.bookmanager.domain.port.BookRepository
-import kotlin.time.ExperimentalTime
 
 /**
  * 書籍詳細を取得するユースケース。
@@ -32,7 +31,6 @@ class GetBookDetailUseCase(
      * 書籍IDから詳細を取得します。
      * @throws BookNotFound 見つからない場合
      */
-    @OptIn(ExperimentalTime::class)
     suspend fun execute(bookId: Int): GetBookResult = txManager.inTransaction {
         bookRepository.findById(BookId(bookId))?.let { (book, rentStatus) ->
             GetBookResult(

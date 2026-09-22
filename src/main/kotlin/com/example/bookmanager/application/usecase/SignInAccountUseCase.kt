@@ -4,7 +4,6 @@ import com.example.bookmanager.application.port.TransactionManager
 import com.example.bookmanager.domain.model.common.Email
 import com.example.bookmanager.domain.port.AccountRepository
 import de.mkammerer.argon2.Argon2Factory
-import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
 /**
@@ -34,7 +33,6 @@ class SignInAccountUseCase(
      * @property name 表示名
      * @property level 権限レベル（文字列表現）
      */
-    @OptIn(ExperimentalUuidApi::class)
     data class SignInResult(
         val accountId: Uuid, // UUID string
         val email: String,
@@ -46,7 +44,6 @@ class SignInAccountUseCase(
      * 認証処理を行います。
      * @throws IllegalArgumentException メールアドレスが存在しない、またはパスワードが一致しない場合
      */
-    @OptIn(ExperimentalUuidApi::class)
     suspend fun execute(input: SignInInput): SignInResult = txManager.inTransaction {
         val email = Email(input.email.trim())
         val account = accountRepository.findByEmail(email)

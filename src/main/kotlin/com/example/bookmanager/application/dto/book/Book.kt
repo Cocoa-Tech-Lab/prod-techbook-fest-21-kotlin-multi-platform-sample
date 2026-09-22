@@ -1,7 +1,6 @@
 package com.example.bookmanager.application.dto.book
 
 import kotlinx.datetime.LocalDate
-import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
 
 /**
@@ -18,7 +17,6 @@ import kotlin.time.Instant
  * @property publishedAt 出版日
  * @property depositedAt 受け入れ（登録）日時
  */
-@OptIn(ExperimentalTime::class)
 data class Book(
     val id: Int,
     val name: String,

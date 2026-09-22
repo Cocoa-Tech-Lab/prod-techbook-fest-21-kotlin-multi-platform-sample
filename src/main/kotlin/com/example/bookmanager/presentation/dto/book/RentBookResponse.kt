@@ -2,7 +2,6 @@ package com.example.bookmanager.presentation.dto.book
 
 import com.example.bookmanager.presentation.dto.common.ApiResponseDataField
 import kotlinx.serialization.Serializable
-import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
 /**
@@ -15,7 +14,6 @@ import kotlin.uuid.Uuid
  * @property returnDeadline 返却期限（ISO 8601 オフセット付き）
  * @property status 現在のステータス（例: RENTED）
  */
-@OptIn(ExperimentalUuidApi::class)
 @Serializable
 data class RentBookResponse(
     val rentId: Uuid,

@@ -4,17 +4,11 @@ import com.example.bookmanager.application.usecase.GetBookDetailUseCase
 import com.example.bookmanager.application.usecase.ListBookUseCase
 import com.example.bookmanager.application.usecase.RentBookUseCase
 import com.example.bookmanager.application.usecase.ReturnBookUseCase
-import com.example.bookmanager.presentation.dto.book.BookDetailResponse
-import com.example.bookmanager.presentation.dto.book.BookSummary
-import com.example.bookmanager.presentation.dto.book.ListBookSummaryResponse
-import com.example.bookmanager.presentation.dto.book.RentBookResponse
-import com.example.bookmanager.presentation.dto.book.ReturnBookResponse
+import com.example.bookmanager.presentation.dto.book.*
 import com.example.bookmanager.presentation.dto.common.ApiResponse.Success
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.format
 import kotlinx.datetime.format.DateTimeComponents
-import kotlin.time.ExperimentalTime
-import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
 /**
@@ -49,7 +43,6 @@ class BookController(
      * 書籍の詳細を取得します。
      * @param bookId 書籍ID
      */
-    @OptIn(ExperimentalTime::class)
     suspend fun detail(bookId: Int): Success<BookDetailResponse> {
         val found = getBookDetailUseCase.execute(bookId)
         return Success(
@@ -71,7 +64,6 @@ class BookController(
      * @param bookId 書籍ID
      * @param userId 借りるユーザのID
      */
-    @OptIn(ExperimentalTime::class, ExperimentalUuidApi::class)
     suspend fun rent(bookId: Int, userId: Uuid): Success<RentBookResponse> {
         val result = rentBookUseCase.execute(
             RentBookUseCase.RentBookInput(
@@ -95,7 +87,6 @@ class BookController(
      * 貸出IDを指定して返却を記録します。
      * @param rentId 貸出ID
      */
-    @OptIn(ExperimentalTime::class, ExperimentalUuidApi::class)
     suspend fun returnByRentId(rentId: Uuid): Success<ReturnBookResponse> {
         val updated = returnBookUseCase.execute(
             ReturnBookUseCase.ReturnBookInput(rentId = rentId)

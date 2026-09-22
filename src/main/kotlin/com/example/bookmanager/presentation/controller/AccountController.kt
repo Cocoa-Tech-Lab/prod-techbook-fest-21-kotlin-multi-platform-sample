@@ -1,22 +1,14 @@
 package com.example.bookmanager.presentation.controller
 
 import com.example.bookmanager.application.port.TokenIssuer
-import com.example.bookmanager.application.usecase.RegisterAccountUseCase
-import com.example.bookmanager.presentation.dto.account.CreateAccountRequest
-import com.example.bookmanager.presentation.dto.account.CreateAccountResponse
-import com.example.bookmanager.presentation.dto.common.ApiResponse
-import com.example.bookmanager.presentation.dto.account.SignInRequest
-import com.example.bookmanager.presentation.dto.account.SignInResponse
-import kotlin.uuid.ExperimentalUuidApi
-
-import com.example.bookmanager.application.usecase.SignInAccountUseCase
 import com.example.bookmanager.application.usecase.ListRentalHistoryUseCase
-import com.example.bookmanager.presentation.dto.account.RentalListResponse
-import com.example.bookmanager.presentation.dto.account.RentalHistoryItem
+import com.example.bookmanager.application.usecase.RegisterAccountUseCase
+import com.example.bookmanager.application.usecase.SignInAccountUseCase
+import com.example.bookmanager.presentation.dto.account.*
+import com.example.bookmanager.presentation.dto.common.ApiResponse
 import com.example.bookmanager.presentation.dto.common.ApiResponse.Success
 import kotlinx.datetime.format
 import kotlinx.datetime.format.DateTimeComponents
-import kotlin.time.ExperimentalTime
 import kotlin.uuid.Uuid
 
 /**
@@ -33,7 +25,6 @@ class AccountController(
     /**
      * アカウントを新規登録します。
      */
-    @OptIn(ExperimentalUuidApi::class)
     suspend fun register(request: CreateAccountRequest): ApiResponse.Success<CreateAccountResponse> {
         val result = registerAccountUseCase.execute(
             RegisterAccountUseCase.RegisterAccountInput(
@@ -53,7 +44,6 @@ class AccountController(
     /**
      * サインインしてJWTを発行します。
      */
-    @OptIn(ExperimentalUuidApi::class)
     suspend fun signin(request: SignInRequest): ApiResponse.Success<SignInResponse> {
         val result = signInAccountUseCase.execute(
             SignInAccountUseCase.SignInInput(
@@ -74,7 +64,6 @@ class AccountController(
      * 自分のレンタル履歴を取得します。
      * @param userId 取得対象のユーザID
      */
-    @OptIn(ExperimentalTime::class, ExperimentalUuidApi::class)
     suspend fun rentalHistory(userId: Uuid): Success<RentalListResponse> {
         val result = listRentalHistoryUseCase.execute(
             ListRentalHistoryUseCase.ListRentalHistoryInput(

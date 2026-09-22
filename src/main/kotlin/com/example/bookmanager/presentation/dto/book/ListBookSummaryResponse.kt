@@ -2,7 +2,6 @@ package com.example.bookmanager.presentation.dto.book
 
 import com.example.bookmanager.presentation.dto.common.ApiResponseDataField
 import kotlinx.serialization.Serializable
-import kotlin.time.ExperimentalTime
 
 /**
  * 書籍一覧向けのサマリ行を表すDTO。
@@ -12,7 +11,6 @@ import kotlin.time.ExperimentalTime
  * @property publishedAt 出版日（ISO: yyyy-MM-dd）
  * @property canRent 現在借りられるか
  */
-@OptIn(ExperimentalTime::class)
 @Serializable
 data class BookSummary(
     val bookId: Int,

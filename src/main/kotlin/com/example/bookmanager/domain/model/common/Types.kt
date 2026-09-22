@@ -1,24 +1,21 @@
 package com.example.bookmanager.domain.model.common
 
-import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
 // ドメイン共通: 各種IDや値オブジェクト
 @JvmInline
-value class BookId @OptIn(ExperimentalUuidApi::class) constructor(val value: Int)
+value class BookId(val value: Int)
 
 @JvmInline
-value class AccountId @OptIn(ExperimentalUuidApi::class) constructor(val value: Uuid) {
+value class AccountId(val value: Uuid) {
     companion object {
-        @OptIn(ExperimentalUuidApi::class)
         fun parse(text: String): AccountId = AccountId(Uuid.parse(text))
     }
 }
 
 @JvmInline
-value class RentId @OptIn(ExperimentalUuidApi::class) constructor(val value: Uuid) {
+value class RentId(val value: Uuid) {
     companion object {
-        @OptIn(ExperimentalUuidApi::class)
         fun parse(text: String): RentId = RentId(Uuid.parse(text))
     }
 }

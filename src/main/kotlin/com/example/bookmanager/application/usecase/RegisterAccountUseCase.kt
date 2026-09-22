@@ -8,7 +8,6 @@ import com.example.bookmanager.domain.port.AccountRepository
 import de.mkammerer.argon2.Argon2Factory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
 /**
@@ -37,7 +36,6 @@ class RegisterAccountUseCase(
      * @property email 登録したメールアドレス
      * @property name 表示名（email のローカル部を初期値として採用）
      */
-    @OptIn(ExperimentalUuidApi::class)
     data class RegisterAccountResult(
         val accountId: Uuid,
         val email: String,
@@ -50,7 +48,6 @@ class RegisterAccountUseCase(
      * - 8文字未満のパスワードは拒否します。
      * - 既に同一メールが存在する場合はエラーを投げます。
      */
-    @OptIn(ExperimentalUuidApi::class)
     suspend fun execute(input: RegisterAccountInput): RegisterAccountResult{
         // パスワードハッシュ（Argon2id）
         val argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id)

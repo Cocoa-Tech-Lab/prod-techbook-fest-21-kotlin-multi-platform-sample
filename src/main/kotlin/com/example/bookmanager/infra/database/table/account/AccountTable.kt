@@ -5,7 +5,6 @@ import org.jetbrains.exposed.v1.core.dao.id.UuidTable
 import org.jetbrains.exposed.v1.datetime.timestampWithTimeZone
 import java.time.ZoneOffset
 import kotlin.time.Clock
-import kotlin.time.ExperimentalTime
 import kotlin.time.toJavaInstant
 
 
@@ -30,12 +29,10 @@ object AccountTable: UuidTable(
         toDb = { PGEnum("account_level", it) }
     )
     // 作成日時（timestamptz / default current_timestamp）
-    @OptIn(ExperimentalTime::class)
     val createdAt = timestampWithTimeZone("created_at").clientDefault {
         Clock.System.now().toJavaInstant().atZone(ZoneOffset.UTC).toOffsetDateTime()
     }
     // 更新日時（timestamptz / default current_timestamp）
-    @OptIn(ExperimentalTime::class)
     val updatedAt = timestampWithTimeZone("updated_at").clientDefault {
         Clock.System.now().toJavaInstant().atZone(ZoneOffset.UTC).toOffsetDateTime()
     }

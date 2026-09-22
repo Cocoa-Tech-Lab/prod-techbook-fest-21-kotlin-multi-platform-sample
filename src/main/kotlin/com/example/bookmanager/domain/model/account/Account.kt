@@ -2,7 +2,6 @@ package com.example.bookmanager.domain.model.account
 
 import com.example.bookmanager.domain.model.common.AccountId
 import com.example.bookmanager.domain.model.common.Email
-import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
 
 
@@ -17,7 +16,6 @@ sealed interface AccountEntity {
     ) : AccountEntity
 
     // 永続化済みのアカウント
-    @OptIn(ExperimentalTime::class)
     data class Persisted(
         val id: AccountId,
         val name: String,

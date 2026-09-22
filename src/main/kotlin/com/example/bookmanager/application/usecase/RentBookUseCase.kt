@@ -7,12 +7,10 @@ import com.example.bookmanager.domain.model.rental.RentalEntity
 import com.example.bookmanager.domain.port.RentalRepository
 import java.time.ZoneOffset
 import kotlin.time.Clock
-import kotlin.uuid.ExperimentalUuidApi
-import kotlin.uuid.Uuid
-import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
 import kotlin.time.toJavaInstant
 import kotlin.time.toKotlinInstant
+import kotlin.uuid.Uuid
 
 /**
  * 書籍を貸し出すユースケース。
@@ -29,7 +27,6 @@ class RentBookUseCase(
      * @property bookId 書籍ID
      * @property userId 借りるユーザのID
      */
-    @OptIn(ExperimentalUuidApi::class)
     data class RentBookInput(
         val bookId: Int,
         val userId: Uuid,
@@ -44,7 +41,6 @@ class RentBookUseCase(
      * @property returnDeadline 返却期限（UTC）
      * @property status 現在の状態（Borrowed/Returned）
      */
-    @OptIn(ExperimentalUuidApi::class, ExperimentalTime::class)
     data class RentBookResult(
         val rentId: Uuid,
         val bookId: Int,
@@ -58,7 +54,6 @@ class RentBookUseCase(
      * 貸出処理を実行します。
      * - 未返却の貸出が既にある場合はエラーを投げます。
      */
-    @OptIn(ExperimentalUuidApi::class, ExperimentalTime::class)
     suspend fun execute(input: RentBookInput): RentBookResult = txManager.inTransaction {
         val bid = BookId(input.bookId)
         val uid = AccountId(input.userId)

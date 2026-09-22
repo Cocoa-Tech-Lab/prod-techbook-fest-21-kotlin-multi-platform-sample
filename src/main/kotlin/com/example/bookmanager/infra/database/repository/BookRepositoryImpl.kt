@@ -9,10 +9,12 @@ import com.example.bookmanager.domain.port.BookRepository
 import com.example.bookmanager.infra.database.table.book.BookTable
 import com.example.bookmanager.infra.database.table.rental.RentalTable
 import org.jetbrains.exposed.v1.core.*
-import org.jetbrains.exposed.v1.jdbc.*
+import org.jetbrains.exposed.v1.jdbc.deleteWhere
+import org.jetbrains.exposed.v1.jdbc.insertReturning
+import org.jetbrains.exposed.v1.jdbc.select
+import org.jetbrains.exposed.v1.jdbc.updateReturning
 import java.time.ZoneOffset
 import kotlin.time.Clock
-import kotlin.time.ExperimentalTime
 import kotlin.time.toJavaInstant
 import kotlin.time.toKotlinInstant
 
@@ -26,7 +28,6 @@ import kotlin.time.toKotlinInstant
  * - 一覧取得では N+1 を避けるため、未返却レンタルの件数をまとめて取得し Map 化して突き合わせています。
  */
 class BookRepositoryImpl : BookRepository {
-    @OptIn(ExperimentalTime::class)
     override fun register(book: BookEntity.New): BookEntity.Persisted {
         return BookTable.insertReturning(
             returning = listOf(
@@ -111,7 +112,6 @@ class BookRepositoryImpl : BookRepository {
         return row?.toPersistedBookWithSatus()
     }
 
-    @OptIn(ExperimentalTime::class)
     override fun update(
         book: BookEntity.Persisted
     ): BookEntity.Persisted? {
@@ -143,7 +143,6 @@ class BookRepositoryImpl : BookRepository {
     }
 }
 
-@OptIn(ExperimentalTime::class)
 private fun ResultRow.toPersistedBookEntity(): BookEntity.Persisted {
     return BookEntity.Persisted(
         bookId = BookId(this[BookTable.id].value),
@@ -157,7 +156,6 @@ private fun ResultRow.toPersistedBookEntity(): BookEntity.Persisted {
 }
 
 
-@OptIn(ExperimentalTime::class)
 private fun ResultRow.toPersistedBookWithSatus(): BookWithStatus {
     return BookWithStatus(
         book = this.toPersistedBookEntity(),

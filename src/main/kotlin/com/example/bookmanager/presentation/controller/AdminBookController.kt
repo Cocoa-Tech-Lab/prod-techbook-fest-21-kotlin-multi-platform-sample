@@ -12,7 +12,6 @@ import com.example.bookmanager.presentation.dto.common.Empty
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.format
 import kotlinx.datetime.format.DateTimeComponents
-import kotlin.time.ExperimentalTime
 
 /**
  * 管理者向けの書籍登録・更新・削除を扱う Controller。
@@ -25,7 +24,6 @@ class AdminBookController(
     /**
      * 書籍を新規登録します。
      */
-    @OptIn(ExperimentalTime::class)
     suspend fun register(request: CreateBookRequest): Success<CreateBookResponse> {
         val input = CreateBookUseCase.CreateBookInput(
             title = request.title,
@@ -49,7 +47,6 @@ class AdminBookController(
     /**
      * 既存の書籍情報を更新します。
      */
-    @OptIn(ExperimentalTime::class)
     suspend fun update(bookId: Int, request: UpdateBookRequest): Success<UpdateBookResponse> {
         val input = UpdateBookUseCase.UpdateBookInput(
             bookId = bookId,

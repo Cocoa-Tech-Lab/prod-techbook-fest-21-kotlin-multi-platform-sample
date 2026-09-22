@@ -1,22 +1,18 @@
 package com.example.bookmanager.infra.database.repository
 
 import com.example.bookmanager.domain.model.account.AccountEntity
-import com.example.bookmanager.domain.model.account.AccountLevel as DomainAccountLevel
 import com.example.bookmanager.domain.model.common.AccountId
 import com.example.bookmanager.domain.model.common.Email
 import com.example.bookmanager.domain.port.AccountRepository
-import com.example.bookmanager.infra.database.table.account.AccountLevel as DbAccountLevel
 import com.example.bookmanager.infra.database.table.account.AccountTable
 import org.jetbrains.exposed.v1.core.ResultRow
 import org.jetbrains.exposed.v1.core.eq
 import org.jetbrains.exposed.v1.jdbc.insertReturning
 import org.jetbrains.exposed.v1.jdbc.selectAll
-import kotlin.time.ExperimentalTime
 import kotlin.time.toKotlinInstant
-import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
-import kotlin.uuid.toJavaUuid
-import kotlin.uuid.toKotlinUuid
+import com.example.bookmanager.domain.model.account.AccountLevel as DomainAccountLevel
+import com.example.bookmanager.infra.database.table.account.AccountLevel as DbAccountLevel
 
 /**
  * AccountRepository の Exposed 実装。
@@ -33,7 +29,6 @@ class AccountRepositoryImpl : AccountRepository {
         return row?.toPersisted()
     }
 
-    @OptIn(ExperimentalTime::class, ExperimentalUuidApi::class)
     override fun register(newAccount: AccountEntity.New): AccountEntity.Persisted {
         val inserted = AccountTable.insertReturning(
             returning = listOf(
@@ -59,7 +54,6 @@ class AccountRepositoryImpl : AccountRepository {
     }
 }
 
-@OptIn(ExperimentalTime::class, ExperimentalUuidApi::class)
 private fun ResultRow.toPersisted(): AccountEntity.Persisted {
     return AccountEntity.Persisted(
         id = AccountId(this[AccountTable.id].value),

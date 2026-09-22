@@ -6,7 +6,6 @@ import com.example.bookmanager.domain.model.book.BookEntity
 import com.example.bookmanager.domain.model.common.Isbn
 import com.example.bookmanager.domain.port.BookRepository
 import kotlinx.datetime.LocalDate
-import kotlin.time.ExperimentalTime
 
 /**
  * 書籍を新規登録するユースケース。
@@ -47,7 +46,6 @@ class CreateBookUseCase(
      * 書籍を登録して結果を返します。
      * - すでに存在チェック等は要件次第。現在は Repository 層の制約に委譲しています。
      */
-    @OptIn(ExperimentalTime::class)
     suspend fun execute(input: CreateBookInput): CreateBookResult = txManager.inTransaction {
         val book = bookRepository.register(
             BookEntity.New(

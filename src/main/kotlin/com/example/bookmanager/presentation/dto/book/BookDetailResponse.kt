@@ -2,7 +2,6 @@ package com.example.bookmanager.presentation.dto.book
 
 import com.example.bookmanager.presentation.dto.common.ApiResponseDataField
 import kotlinx.serialization.Serializable
-import kotlin.time.ExperimentalTime
 
 /**
  * 書籍詳細画面向けのレスポンスDTO。
@@ -17,7 +16,6 @@ import kotlin.time.ExperimentalTime
  * @property isbn ISBN コード
  * @property canRent 現在借りられるか
  */
-@OptIn(ExperimentalTime::class)
 @Serializable
 data class BookDetailResponse(
     val bookId: Int,

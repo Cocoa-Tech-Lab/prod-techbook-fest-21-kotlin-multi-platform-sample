@@ -1,6 +1,6 @@
 package com.example.bookmanager.presentation.routing
 
-import io.ktor.server.application.Application
+import io.ktor.server.application.*
 
 /**
  * ルーティング定義をモジュール化するためのインターフェース。

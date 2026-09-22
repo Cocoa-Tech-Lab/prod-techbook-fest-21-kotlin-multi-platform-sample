@@ -1,16 +1,13 @@
 package com.example.bookmanager.presentation.plugin
 
 import com.example.bookmanager.domain.model.account.AccountLevel
-import com.example.bookmanager.presentation.security.AppPrincipal
 import com.example.bookmanager.presentation.dto.common.ApiResponse
 import com.example.bookmanager.presentation.dto.common.ErrorInfo
-import io.ktor.http.HttpStatusCode
-import io.ktor.server.application.createRouteScopedPlugin
-import io.ktor.server.auth.AuthenticationChecked
-import io.ktor.server.auth.principal
-import io.ktor.server.response.respond
-import io.ktor.server.routing.Route
-import kotlin.collections.plusAssign
+import com.example.bookmanager.presentation.security.AppPrincipal
+import io.ktor.http.*
+import io.ktor.server.application.*
+import io.ktor.server.auth.*
+import io.ktor.server.response.*
 
 /**
  * アカウントレベル（権限）でルートを制御するための Route スコーププラグイン。

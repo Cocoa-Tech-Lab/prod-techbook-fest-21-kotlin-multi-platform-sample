@@ -7,14 +7,15 @@ import com.example.bookmanager.domain.model.common.RentStatus
 import com.example.bookmanager.domain.model.rental.RentalEntity
 import com.example.bookmanager.domain.port.RentalRepository
 import com.example.bookmanager.infra.database.table.rental.RentalTable
-import org.jetbrains.exposed.v1.core.*
-import org.jetbrains.exposed.v1.jdbc.*
+import org.jetbrains.exposed.v1.core.ResultRow
+import org.jetbrains.exposed.v1.core.and
+import org.jetbrains.exposed.v1.core.eq
+import org.jetbrains.exposed.v1.core.isNull
+import org.jetbrains.exposed.v1.jdbc.insertReturning
+import org.jetbrains.exposed.v1.jdbc.selectAll
+import org.jetbrains.exposed.v1.jdbc.updateReturning
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
-import kotlin.uuid.ExperimentalUuidApi
-import kotlin.uuid.toJavaUuid
-import kotlin.uuid.toKotlinUuid
-import kotlin.time.ExperimentalTime
 import kotlin.time.toJavaInstant
 import kotlin.time.toKotlinInstant
 
@@ -31,7 +32,6 @@ class RentalRepositoryImpl : RentalRepository {
     /**
      * 貸出レコードを作成します。重複貸出（未返却の同一 book_id）は DB 側のユニーク制約で弾かれます。
      */
-    @OptIn(ExperimentalTime::class, ExperimentalUuidApi::class)
     override fun rent(newRental: RentalEntity.New): RentalEntity.Persisted {
         val inserted = RentalTable.insertReturning(
             returning = listOf(
@@ -58,7 +58,6 @@ class RentalRepositoryImpl : RentalRepository {
      * 返却処理。returnedAt を現在時刻で更新します。
      * 見つからない場合は null を返します。
      */
-    @OptIn(ExperimentalTime::class, ExperimentalUuidApi::class)
     override fun returnById(rentId: RentId): RentalEntity.Persisted? {
         val updated = RentalTable.updateReturning(
             returning = listOf(
@@ -90,7 +89,6 @@ class RentalRepositoryImpl : RentalRepository {
     /**
      * ユーザの貸出一覧を取得します。activeOnly=true の場合は未返却のみを返します。
      */
-    @OptIn(ExperimentalUuidApi::class)
     override fun listByUser(userId: AccountId, activeOnly: Boolean): List<RentalEntity.Persisted> {
         val condition = if (activeOnly) {
             (RentalTable.user eq userId.value) and RentalTable.returnedAt.isNull()
@@ -108,7 +106,6 @@ class RentalRepositoryImpl : RentalRepository {
  * Exposed の ResultRow からドメインの Rental へのマッピング関数。
  * returnedAt の null/非null をもとに RentStatus を導出します。
  */
-@OptIn(ExperimentalTime::class, ExperimentalUuidApi::class)
 private fun ResultRow.toPersistedRentalEntity(): RentalEntity.Persisted {
     return RentalEntity.Persisted(
         id = RentId(this[RentalTable.id].value),

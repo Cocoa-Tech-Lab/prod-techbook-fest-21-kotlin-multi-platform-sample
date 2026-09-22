@@ -3,7 +3,7 @@ package com.example.bookmanager.presentation.security
 import com.example.bookmanager.domain.model.account.AccountLevel
 import com.example.bookmanager.domain.model.common.AccountId
 import com.example.bookmanager.domain.model.common.Email
-import io.ktor.server.auth.jwt.JWTPrincipal
+import io.ktor.server.auth.jwt.*
 
 /**
  * 認証済みユーザを表すアプリケーション専用の Principal。

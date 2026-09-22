@@ -5,7 +5,6 @@ import org.jetbrains.exposed.v1.datetime.date
 import org.jetbrains.exposed.v1.datetime.timestampWithTimeZone
 import java.time.ZoneOffset
 import kotlin.time.Clock
-import kotlin.time.ExperimentalTime
 import kotlin.time.toJavaInstant
 
 // Exposed v1 のテーブル定義: V1__init.sql の book テーブルに対応
@@ -21,7 +20,6 @@ object BookTable : IntIdTable(
     // 筆者名（必須 / varchar(32)）
     val author = varchar("author", length = 32)
     // 蔵書日（timestamptz / default current_timestamp）
-    @OptIn(ExperimentalTime::class)
     val depositedAt = timestampWithTimeZone("deposited_at").clientDefault {
         Clock.System.now().toJavaInstant().atZone(ZoneOffset.UTC).toOffsetDateTime()
     }

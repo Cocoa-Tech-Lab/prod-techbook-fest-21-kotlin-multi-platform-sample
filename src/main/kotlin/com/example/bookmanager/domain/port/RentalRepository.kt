@@ -4,7 +4,6 @@ import com.example.bookmanager.domain.model.common.AccountId
 import com.example.bookmanager.domain.model.common.BookId
 import com.example.bookmanager.domain.model.common.RentId
 import com.example.bookmanager.domain.model.rental.RentalEntity
-import kotlin.time.ExperimentalTime
 
 /**
  * 貸出のリポジトリ（ドメインポート）。

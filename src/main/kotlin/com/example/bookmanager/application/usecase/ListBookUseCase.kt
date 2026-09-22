@@ -4,7 +4,6 @@ import com.example.bookmanager.application.dto.book.Book
 import com.example.bookmanager.application.port.TransactionManager
 import com.example.bookmanager.domain.model.common.RentStatus
 import com.example.bookmanager.domain.port.BookRepository
-import kotlin.time.ExperimentalTime
 
 /**
  * 書籍一覧を取得するユースケース。
@@ -28,7 +27,6 @@ class ListBookUseCase(
      * 書籍一覧を取得します。
      * 返却値の canRent は現在借りられるかどうかを示します。
      */
-    @OptIn(ExperimentalTime::class)
     suspend fun execute() = txManager.inTransaction {
         bookRepository.findAll().map { (book, rentStatus) ->
             Book(
