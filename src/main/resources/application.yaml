@@ -1,0 +1,25 @@
+ktor:
+  application:
+    modules:
+      - com.example.bookmanager.core.MainModuleKt.mainModule
+  deployment:
+    port: 8080
+jwt:
+  domain: "https://jwt-provider-domain/"
+  audience: "jwt-audience"
+  realm: "ktor sample app"
+  secret: "${KTOR_APP_JWT_SECRET}"
+  expiresMinutes: 60
+database:
+  host: "${KTOR_APP_POSTGRES_HOST}"
+  port: "${KTOR_APP_POSTGRES_PORT}"
+  dbName: "${KTOR_APP_POSTGRES_DB}"
+  user: "${KTOR_APP_POSTGRES_USER}"
+  password: "${KTOR_APP_POSTGRES_PASSWORD}"
+  dbDriver: org.postgresql.Driver
+  pool:
+    min: 5
+    max: 10
+    idle: 600
+    lifetime: 1800
+    keepalive: 300

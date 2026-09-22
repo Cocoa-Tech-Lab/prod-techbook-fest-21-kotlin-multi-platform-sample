@@ -1,0 +1,23 @@
+services:
+  db:
+    container_name: book-manager-hands-on-postgres
+    restart: always
+    image: postgres:16.9
+    ports:
+      - '${KTOR_APP_POSTGRES_PORT}:5432'
+    environment:
+      POSTGRES_DB: ${KTOR_APP_POSTGRES_DB}
+      POSTGRES_USER: ${KTOR_APP_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${KTOR_APP_POSTGRES_PASSWORD}
+    env_file:
+      - .env
+    volumes:
+      - type: volume
+        source: db-volume
+        target: /var/lib/postgresql/data
+
+# ボリューム設定（永続化のため）
+volumes:
+  db-volume:
+    name: book-manager-hands-on-postgres-data
+    driver: local
