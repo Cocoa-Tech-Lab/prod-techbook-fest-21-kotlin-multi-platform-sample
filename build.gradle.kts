@@ -44,6 +44,9 @@ dependencies {
 
     // Argon2 password hashing
     implementation(libs.argon2.jvm)
+
+
+    implementation(project(":protocol:contract"))
 }
 
 tasks.named("run", JavaExec::class) {

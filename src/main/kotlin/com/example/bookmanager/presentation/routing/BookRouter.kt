@@ -3,10 +3,10 @@ package com.example.bookmanager.presentation.routing
 import com.example.bookmanager.domain.model.account.AccountLevel
 import com.example.bookmanager.presentation.controller.AdminBookController
 import com.example.bookmanager.presentation.controller.BookController
-import com.example.bookmanager.presentation.dto.book.CreateBookRequest
-import com.example.bookmanager.presentation.dto.book.UpdateBookRequest
 import com.example.bookmanager.presentation.plugin.accountLevelAuthorization
 import com.example.bookmanager.presentation.security.AppPrincipal
+import com.example.bookmanager.protocol.contract.dto.book.CreateBookRequest
+import com.example.bookmanager.protocol.contract.dto.book.UpdateBookRequest
 import io.ktor.http.*
 import io.ktor.resources.*
 import io.ktor.server.application.Application

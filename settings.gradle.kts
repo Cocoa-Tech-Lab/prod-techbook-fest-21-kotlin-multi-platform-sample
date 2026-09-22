@@ -5,3 +5,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
+include("protocol")
+include("protocol:contract")
+include("protocol:client")

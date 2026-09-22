@@ -4,9 +4,9 @@ import com.example.bookmanager.application.port.TokenIssuer
 import com.example.bookmanager.application.usecase.ListRentalHistoryUseCase
 import com.example.bookmanager.application.usecase.RegisterAccountUseCase
 import com.example.bookmanager.application.usecase.SignInAccountUseCase
-import com.example.bookmanager.presentation.dto.account.*
-import com.example.bookmanager.presentation.dto.common.ApiResponse
-import com.example.bookmanager.presentation.dto.common.ApiResponse.Success
+import com.example.bookmanager.protocol.contract.dto.account.*
+import com.example.bookmanager.protocol.contract.details.ApiResponse
+import com.example.bookmanager.protocol.contract.details.ApiResponse.Success
 import kotlinx.datetime.format
 import kotlinx.datetime.format.DateTimeComponents
 import kotlin.uuid.Uuid

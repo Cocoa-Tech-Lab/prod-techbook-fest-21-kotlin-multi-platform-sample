@@ -1,6 +1,6 @@
-package com.example.bookmanager.presentation.dto.account
+package com.example.bookmanager.protocol.contract.dto.account
 
-import com.example.bookmanager.presentation.dto.common.ApiResponseDataField
+import com.example.bookmanager.protocol.contract.details.ApiResponseDataField
 import kotlinx.serialization.Serializable
 import kotlin.uuid.Uuid
 

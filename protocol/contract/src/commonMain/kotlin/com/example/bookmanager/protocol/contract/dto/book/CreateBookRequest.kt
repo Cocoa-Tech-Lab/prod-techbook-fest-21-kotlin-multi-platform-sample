@@ -1,4 +1,4 @@
-package com.example.bookmanager.presentation.dto.book
+package com.example.bookmanager.protocol.contract.dto.book
 
 import kotlinx.serialization.Serializable
 

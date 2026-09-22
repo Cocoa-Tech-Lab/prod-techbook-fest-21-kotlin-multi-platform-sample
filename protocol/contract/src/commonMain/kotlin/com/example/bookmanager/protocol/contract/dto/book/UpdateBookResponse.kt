@@ -1,6 +1,6 @@
-package com.example.bookmanager.presentation.dto.book
+package com.example.bookmanager.protocol.contract.dto.book
 
-import com.example.bookmanager.presentation.dto.common.ApiResponseDataField
+import com.example.bookmanager.protocol.contract.details.ApiResponseDataField
 import kotlinx.serialization.Serializable
 
 @Serializable

@@ -1,9 +1,9 @@
 package com.example.bookmanager.presentation.routing
 
 import com.example.bookmanager.presentation.controller.AccountController
-import com.example.bookmanager.presentation.dto.account.CreateAccountRequest
-import com.example.bookmanager.presentation.dto.account.SignInRequest
 import com.example.bookmanager.presentation.security.AppPrincipal
+import com.example.bookmanager.protocol.contract.dto.account.CreateAccountRequest
+import com.example.bookmanager.protocol.contract.dto.account.SignInRequest
 import io.ktor.http.*
 import io.ktor.resources.*
 import io.ktor.server.application.Application

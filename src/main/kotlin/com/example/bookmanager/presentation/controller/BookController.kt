@@ -4,8 +4,12 @@ import com.example.bookmanager.application.usecase.GetBookDetailUseCase
 import com.example.bookmanager.application.usecase.ListBookUseCase
 import com.example.bookmanager.application.usecase.RentBookUseCase
 import com.example.bookmanager.application.usecase.ReturnBookUseCase
-import com.example.bookmanager.presentation.dto.book.*
-import com.example.bookmanager.presentation.dto.common.ApiResponse.Success
+import com.example.bookmanager.protocol.contract.details.ApiResponse
+import com.example.bookmanager.protocol.contract.dto.book.BookDetailResponse
+import com.example.bookmanager.protocol.contract.dto.book.BookSummary
+import com.example.bookmanager.protocol.contract.dto.book.ListBookSummaryResponse
+import com.example.bookmanager.protocol.contract.dto.book.RentBookResponse
+import com.example.bookmanager.protocol.contract.dto.book.ReturnBookResponse
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.format
 import kotlinx.datetime.format.DateTimeComponents
@@ -26,10 +30,10 @@ class BookController(
      * 書籍一覧を取得します。
      * @return 画面表示用に整形済みの一覧 DTO
      */
-    suspend fun list(): Success<ListBookSummaryResponse>{
+    suspend fun list(): ApiResponse.Success<ListBookSummaryResponse> {
         val bookList: ListBookUseCase.ListBookResult = listBookUseCase.execute()
 
-        return Success(ListBookSummaryResponse(books = bookList.books.map { (book, canRent) ->
+        return ApiResponse.Success(ListBookSummaryResponse(books = bookList.books.map { (book, canRent) ->
             BookSummary(
                 bookId = book.id,
                 publishedAt = book.publishedAt.format(LocalDate.Formats.ISO),
@@ -43,9 +47,9 @@ class BookController(
      * 書籍の詳細を取得します。
      * @param bookId 書籍ID
      */
-    suspend fun detail(bookId: Int): Success<BookDetailResponse> {
+    suspend fun detail(bookId: Int): ApiResponse.Success<BookDetailResponse> {
         val found = getBookDetailUseCase.execute(bookId)
-        return Success(
+        return ApiResponse.Success(
             BookDetailResponse(
                 bookId = found.book.id,
                 name = found.book.name,
@@ -64,14 +68,14 @@ class BookController(
      * @param bookId 書籍ID
      * @param userId 借りるユーザのID
      */
-    suspend fun rent(bookId: Int, userId: Uuid): Success<RentBookResponse> {
+    suspend fun rent(bookId: Int, userId: Uuid): ApiResponse.Success<RentBookResponse> {
         val result = rentBookUseCase.execute(
             RentBookUseCase.RentBookInput(
                 bookId = bookId,
                 userId = userId,
             )
         )
-        return Success(
+        return ApiResponse.Success(
             RentBookResponse(
                 rentId = result.rentId,
                 bookId = result.bookId,
@@ -87,11 +91,11 @@ class BookController(
      * 貸出IDを指定して返却を記録します。
      * @param rentId 貸出ID
      */
-    suspend fun returnByRentId(rentId: Uuid): Success<ReturnBookResponse> {
+    suspend fun returnByRentId(rentId: Uuid): ApiResponse.Success<ReturnBookResponse> {
         val updated = returnBookUseCase.execute(
             ReturnBookUseCase.ReturnBookInput(rentId = rentId)
         )
-        return Success(
+        return ApiResponse.Success(
             ReturnBookResponse(
                 rentId = updated.rentId,
                 bookId = updated.bookId,
