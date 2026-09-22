@@ -3,12 +3,12 @@ package com.example.bookmanager.infra.database.table.rental
 import com.example.bookmanager.infra.database.table.account.AccountTable
 import com.example.bookmanager.infra.database.table.book.BookTable
 import org.jetbrains.exposed.v1.core.ReferenceOption
-import org.jetbrains.exposed.v1.core.dao.id.UUIDTable
+import org.jetbrains.exposed.v1.core.dao.id.UuidTable
 import org.jetbrains.exposed.v1.core.isNull
 import org.jetbrains.exposed.v1.datetime.timestampWithTimeZone
 
 // Exposed v1 のテーブル定義: V1__init.sql の rent テーブルに対応
-object RentalTable: UUIDTable(
+object RentalTable: UuidTable(
     name = "rental",
     columnName = "rent_id"
 ) {

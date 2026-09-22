@@ -45,7 +45,7 @@ class RentalRepositoryImpl : RentalRepository {
         ) { row ->
             // 主にアプリが付与するフィールドを設定（rentalAt は現在時刻・UTCで保存）
             row[RentalTable.book] = newRental.bookId.value
-            row[RentalTable.user] = newRental.userId.value.toJavaUuid()
+            row[RentalTable.user] = newRental.userId.value
             row[RentalTable.rentalAt] = OffsetDateTime.now(ZoneOffset.UTC)
             // 返却期限は UseCase で決定された値をそのまま保存（UTC へ変換）
             row[RentalTable.returnDeadline] = newRental.returnDeadline.toJavaInstant().atOffset(ZoneOffset.UTC)
@@ -69,7 +69,7 @@ class RentalRepositoryImpl : RentalRepository {
                 RentalTable.returnedAt,
                 RentalTable.returnDeadline,
             ),
-            where = { RentalTable.id eq rentId.value.toJavaUuid() }
+            where = { RentalTable.id eq rentId.value }
         ) { row ->
             row[RentalTable.returnedAt] = OffsetDateTime.now(ZoneOffset.UTC)
         }
@@ -93,9 +93,9 @@ class RentalRepositoryImpl : RentalRepository {
     @OptIn(ExperimentalUuidApi::class)
     override fun listByUser(userId: AccountId, activeOnly: Boolean): List<RentalEntity.Persisted> {
         val condition = if (activeOnly) {
-            (RentalTable.user eq userId.value.toJavaUuid()) and RentalTable.returnedAt.isNull()
+            (RentalTable.user eq userId.value) and RentalTable.returnedAt.isNull()
         } else {
-            RentalTable.user eq userId.value.toJavaUuid()
+            RentalTable.user eq userId.value
         }
         return RentalTable
             .selectAll()
@@ -111,9 +111,9 @@ class RentalRepositoryImpl : RentalRepository {
 @OptIn(ExperimentalTime::class, ExperimentalUuidApi::class)
 private fun ResultRow.toPersistedRentalEntity(): RentalEntity.Persisted {
     return RentalEntity.Persisted(
-        id = RentId(this[RentalTable.id].value.toKotlinUuid()),
+        id = RentId(this[RentalTable.id].value),
         bookId = BookId(this[RentalTable.book].value),
-        userId = AccountId(this[RentalTable.user].value.toKotlinUuid()),
+        userId = AccountId(this[RentalTable.user].value),
         status = if (this[RentalTable.returnedAt] == null) RentStatus.Borrowed else RentStatus.Returned,
         rentalAt = this[RentalTable.rentalAt].toInstant().toKotlinInstant(),
         returnDeadline = this[RentalTable.returnDeadline].toInstant().toKotlinInstant(),

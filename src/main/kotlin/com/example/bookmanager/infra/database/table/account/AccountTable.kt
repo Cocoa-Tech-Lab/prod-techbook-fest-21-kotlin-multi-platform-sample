@@ -1,7 +1,7 @@
 package com.example.bookmanager.infra.database.table.account
 
 import com.example.bookmanager.infra.database.common.PGEnum
-import org.jetbrains.exposed.v1.core.dao.id.UUIDTable
+import org.jetbrains.exposed.v1.core.dao.id.UuidTable
 import org.jetbrains.exposed.v1.datetime.timestampWithTimeZone
 import java.time.ZoneOffset
 import kotlin.time.Clock
@@ -10,7 +10,7 @@ import kotlin.time.toJavaInstant
 
 
 // Exposed v1 のテーブル定義: V1__init.sql の account テーブルに対応
-object AccountTable: UUIDTable(
+object AccountTable: UuidTable(
     name = "account",
     columnName = "account_id"
 ) {

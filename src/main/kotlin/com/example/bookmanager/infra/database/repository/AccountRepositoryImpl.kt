@@ -46,7 +46,7 @@ class AccountRepositoryImpl : AccountRepository {
                 AccountTable.updatedAt
             )
         ) { row ->
-            row[AccountTable.id] = Uuid.random().toJavaUuid()
+            row[AccountTable.id] = Uuid.random()
             row[AccountTable.name] = newAccount.name
             row[AccountTable.email] = newAccount.email.value
             row[AccountTable.hashedPassword] = newAccount.hashedPassword
@@ -62,7 +62,7 @@ class AccountRepositoryImpl : AccountRepository {
 @OptIn(ExperimentalTime::class, ExperimentalUuidApi::class)
 private fun ResultRow.toPersisted(): AccountEntity.Persisted {
     return AccountEntity.Persisted(
-        id = AccountId(this[AccountTable.id].value.toKotlinUuid()),
+        id = AccountId(this[AccountTable.id].value),
         name = this[AccountTable.name],
         email = Email(this[AccountTable.email]),
         hashedPassword = this[AccountTable.hashedPassword],
