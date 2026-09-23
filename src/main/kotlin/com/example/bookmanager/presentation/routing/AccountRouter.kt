@@ -4,8 +4,8 @@ import com.example.bookmanager.presentation.controller.AccountController
 import com.example.bookmanager.presentation.security.AppPrincipal
 import com.example.bookmanager.protocol.contract.dto.account.CreateAccountRequest
 import com.example.bookmanager.protocol.contract.dto.account.SignInRequest
+import com.example.bookmanager.protocol.contract.route.AccountRoute
 import io.ktor.http.*
-import io.ktor.resources.*
 import io.ktor.server.application.Application
 import io.ktor.server.auth.*
 import io.ktor.server.request.*
@@ -19,19 +19,6 @@ import io.ktor.server.routing.routing
 class AccountRouter(
     private val accountController: AccountController,
 ): Router{
-    @Resource("/account")
-    class AccountRoute{
-        /** /account/signin: サインイン（トークン発行） */
-        @Resource("signin")
-        class SignIn(
-            val parent: AccountRoute = AccountRoute()
-        )
-        /** /account/rental_list: 自分のレンタル履歴（要認証） */
-        @Resource("rental_list")
-        class RentalList(
-            val parent: AccountRoute = AccountRoute()
-        )
-    }
 
     override fun installRouting(app: Application) {
         app.routing {

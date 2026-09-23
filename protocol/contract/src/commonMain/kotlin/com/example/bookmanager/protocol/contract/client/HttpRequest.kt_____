@@ -1,0 +1,14 @@
+package com.example.bookmanager.protocol.contract.client
+
+import com.example.bookmanager.protocol.contract.details.ApiRequestBody
+import com.example.bookmanager.protocol.contract.details.ApiResponse
+import com.example.bookmanager.protocol.contract.details.ApiResponseDataField
+
+
+interface HttpRequest<O: ApiResponseDataField> {
+    suspend fun execute(resource: Any, params: Map<String, String>): ApiResponse<O>
+}
+
+interface HttpRequestHavingBody<O: ApiResponseDataField, B: ApiRequestBody>: HttpRequest<O> {
+    suspend fun execute(resource: Any, params: Map<String, String>, body: B): ApiResponse<O>
+}

@@ -1,5 +1,6 @@
 package com.example.bookmanager.protocol.contract.dto.book
 
+import com.example.bookmanager.protocol.contract.details.ApiRequestBody
 import kotlinx.serialization.Serializable
 
 /**
@@ -16,4 +17,4 @@ data class UpdateBookRequest(
     val author: String,
     val outline: String,
     val publishedAt: String,
-)
+): ApiRequestBody

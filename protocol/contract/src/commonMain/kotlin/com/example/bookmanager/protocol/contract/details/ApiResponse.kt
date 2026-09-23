@@ -11,19 +11,19 @@ import kotlinx.serialization.Serializable
  * フロントエンドはこの型に合わせて分岐することで、成功/失敗を一貫して扱えます。
  */
 @Serializable
-sealed interface ApiResponse {
+sealed interface ApiResponse<out O: ApiResponseDataField> {
     /**
      * 正常終了を表すレスポンス。
      * @param T レスポンスボディのデータ型
      * @property data 実際にクライアントへ返すデータ
      */
     @Serializable
-    data class Success<T: ApiResponseDataField>(val data: T): ApiResponse
+    data class Success<out T: ApiResponseDataField>(val data: T): ApiResponse<T>
 
     /**
      * 異常終了（エラー）を表すレスポンス。
      * @property errorInfo ステータスコードやメッセージなどのエラー情報
      */
     @Serializable
-    data class Failure(val errorInfo: ErrorInfo): ApiResponse
+    data class Failure(val errorInfo: ErrorInfo): ApiResponse<Nothing>
 }

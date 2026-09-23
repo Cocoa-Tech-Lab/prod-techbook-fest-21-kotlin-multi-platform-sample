@@ -1,5 +1,6 @@
 package com.example.bookmanager.protocol.contract.dto.account
 
+import com.example.bookmanager.protocol.contract.details.ApiRequestBody
 import kotlinx.serialization.Serializable
 
 /**
@@ -12,4 +13,4 @@ import kotlinx.serialization.Serializable
 data class SignInRequest(
     val email: String,
     val password: String,
-)
+): ApiRequestBody
