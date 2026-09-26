@@ -11,7 +11,8 @@ class RentBook internal constructor(
     httpClient: HttpClient,
 ) : HttpMethod.POST<RentBook.RentBookRequestUrl, RentBook.RentBookRequestParams, EmptyRequestBody, RentBookResponse>(
     httpClient = httpClient,
-    bodyKlazz = EmptyRequestBody::class
+    bodyKlazz = EmptyRequestBody::class,
+    responseSerializer = RentBookResponse.serializer(),
 ) {
     data class RentBookRequestUrl(
         val bookId: String,

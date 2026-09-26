@@ -12,6 +12,7 @@ class DeleteBook internal constructor(
 ) : HttpMethod.DELETE<DeleteBook.UpdateBookDetailRequestUrl, DeleteBook.UpdateBookDetailRequestParams, EmptyRequestBody, Empty>(
     httpClient = httpClient,
     bodyKlazz = EmptyRequestBody::class,
+    responseSerializer = Empty.serializer(),
 ) {
     data class UpdateBookDetailRequestUrl(
         val bookId: Int

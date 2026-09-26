@@ -10,6 +10,7 @@ class GetBookList internal constructor(
     httpClient: HttpClient,
 ) : HttpMethod.GET<GetBookList.GetBookListRequestUrl, GetBookList.GetBookListRequestParams, ListBookSummaryResponse>(
     httpClient = httpClient,
+    responseSerializer = ListBookSummaryResponse.serializer(),
 ) {
     data object GetBookListRequestUrl : HttpRequestUrl {
         override fun buildUrl(): String = "/books"

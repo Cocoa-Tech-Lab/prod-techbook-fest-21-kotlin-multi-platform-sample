@@ -6,5 +6,6 @@ class AccountApi internal constructor(
     httpClient: HttpClient,
 ) {
     val signIn by lazy { SignIn(httpClient) }
+    val signUp by lazy { SignUp(httpClient) }
     val rentalList by lazy { RentalList(httpClient) }
 }

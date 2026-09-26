@@ -10,6 +10,7 @@ class GetBookDetail internal constructor(
     httpClient: HttpClient,
 ) : HttpMethod.GET<GetBookDetail.GetBookDetailRequestUrl, GetBookDetail.GetBookDetailRequestParams, BookDetailResponse>(
     httpClient = httpClient,
+    responseSerializer = BookDetailResponse.serializer(),
 ) {
     data class GetBookDetailRequestUrl(
         val bookId: Int

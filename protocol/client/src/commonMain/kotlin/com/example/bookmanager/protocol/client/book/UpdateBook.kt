@@ -12,6 +12,7 @@ class UpdateBook internal constructor(
 ) : HttpMethod.PUT<UpdateBook.UpdateBookDetailRequestUrl, UpdateBook.UpdateBookDetailRequestParams, UpdateBookRequest, UpdateBookResponse>(
     httpClient = httpClient,
     bodyKlazz = UpdateBookRequest::class,
+    responseSerializer = UpdateBookResponse.serializer(),
 ) {
     data class UpdateBookDetailRequestUrl(
         val bookId: Int

@@ -12,6 +12,7 @@ class CreateBook internal constructor(
 ) : HttpMethod.POST<CreateBook.CreateBookListRequestUrl, CreateBook.CreateBookListRequestParams, CreateBookRequest, CreateBookResponse>(
     httpClient = httpClient,
     bodyKlazz = CreateBookRequest::class,
+    responseSerializer = CreateBookResponse.serializer(),
 ) {
     data object CreateBookListRequestUrl : HttpRequestUrl {
         override fun buildUrl(): String = "/books"

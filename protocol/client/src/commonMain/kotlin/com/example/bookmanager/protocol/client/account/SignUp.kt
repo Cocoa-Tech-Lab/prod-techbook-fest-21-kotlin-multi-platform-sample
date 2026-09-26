@@ -18,6 +18,7 @@ class SignUp internal constructor(
         >(
     httpClient = httpClient,
     bodyKlazz = CreateAccountRequest::class,
+    responseSerializer = CreateAccountResponse.serializer(),
 ) {
     data object SignUpRequestUrl : HttpRequestUrl {
         override fun buildUrl() = "/account"

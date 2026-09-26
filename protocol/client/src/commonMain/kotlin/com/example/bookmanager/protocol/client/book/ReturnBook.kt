@@ -11,12 +11,13 @@ class ReturnBook internal constructor(
     httpClient: HttpClient,
 ) : HttpMethod.POST<ReturnBook.ReturnBookRequestUrl, ReturnBook.ReturnBookRequestParams, EmptyRequestBody, ReturnBookResponse>(
     httpClient = httpClient,
-    bodyKlazz = EmptyRequestBody::class
+    bodyKlazz = EmptyRequestBody::class,
+    responseSerializer = ReturnBookResponse.serializer(),
 ) {
     data class ReturnBookRequestUrl(
         val rentId: String,
     ) : HttpRequestUrl {
-        override fun buildUrl(): String = "/books/$rentId/return"
+        override fun buildUrl(): String = "/rental/$rentId/return"
     }
 
     data object ReturnBookRequestParams : HttpRequestParams

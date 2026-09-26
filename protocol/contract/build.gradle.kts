@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform")
     alias(libs.plugins.kotlin.plugin.serialization)
+    `maven-publish`
 }
 
 group = "com.example.protocol"

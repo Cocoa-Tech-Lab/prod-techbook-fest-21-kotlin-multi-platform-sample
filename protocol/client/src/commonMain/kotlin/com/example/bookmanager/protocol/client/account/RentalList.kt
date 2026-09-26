@@ -10,7 +10,8 @@ import io.ktor.client.*
 class RentalList internal constructor(
     httpClient: HttpClient,
 ) : HttpMethod.GET<RentalList.RentalListUrl, RentalList.RentalListParams, RentalListResponse>(
-    httpClient,
+    httpClient = httpClient,
+    responseSerializer = RentalListResponse.serializer(),
 ) {
     data object RentalListUrl : HttpRequestUrl {
         override fun buildUrl(): String = "/account/rental_list"

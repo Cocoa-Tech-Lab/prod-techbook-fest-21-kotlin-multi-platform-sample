@@ -13,6 +13,7 @@ class SignIn internal constructor(
 ) : HttpMethod.POST<SignIn.SignInRequestUrl, SignIn.SignInRequestParam, SignInRequest, SignInResponse>(
     httpClient = httpClient,
     bodyKlazz = SignInRequest::class,
+    responseSerializer = SignInResponse.serializer(),
 ) {
     data object SignInRequestUrl : HttpRequestUrl {
         override fun buildUrl() = "/account/signin"
