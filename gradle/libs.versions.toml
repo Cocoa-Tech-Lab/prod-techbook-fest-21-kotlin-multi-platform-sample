@@ -12,6 +12,7 @@ argon2 = "2.12"
 kotlinSerialization = "1.12.0"
 
 [libraries]
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 ktor-server-cors = { module = "io.ktor:ktor-server-cors", version.ref = "ktor" }
 ktor-server-di = { module = "io.ktor:ktor-server-di", version.ref = "ktor" }
 koin-ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koin" }

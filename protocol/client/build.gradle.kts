@@ -10,12 +10,11 @@ version = "0.0.1"
 
 kotlin {
     jvmToolchain(17)
-
+    jvm()
     android {
         namespace = "com.example.bookmanager.protocol.client"
-        compileSdk = 37
+        compileSdk = 36
     }
-    jvm()
     sourceSets {
         commonMain.dependencies {
             implementation(libs.kotlinx.serialization.core)
@@ -29,12 +28,12 @@ kotlin {
 
         jvmMain.dependencies {
             // Source: https://mvnrepository.com/artifact/io.ktor/ktor-client-okhttp
-            implementation("io.ktor:ktor-client-okhttp:3.6.0")
+            implementation(libs.ktor.client.okhttp)
         }
 
         androidMain.dependencies {
             // Source: https://mvnrepository.com/artifact/io.ktor/ktor-client-okhttp
-            implementation("io.ktor:ktor-client-okhttp:3.6.0")
+            implementation(libs.ktor.client.okhttp)
         }
     }
 }
