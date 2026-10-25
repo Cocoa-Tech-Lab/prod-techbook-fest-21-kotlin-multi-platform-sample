@@ -1,15 +1,15 @@
 [versions]
-agp = "9.4.0"
+agp = "9.4.1"
 exposed = "1.5.0"
 koin = "4.2.2"
-kotlin = "2.4.20"
+kotlin = "2.4.21"
 ktor = "3.6.0"
 logback = "1.5.13"
 postgres = "42.7.13"
 flyway = "13.7.0"
 hikaricp = "7.1.0"
 argon2 = "2.12"
-kotlinSerialization = "1.11.0"
+kotlinSerialization = "1.12.0"
 
 [libraries]
 ktor-server-cors = { module = "io.ktor:ktor-server-cors", version.ref = "ktor" }
