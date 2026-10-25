@@ -89,3 +89,6 @@ http-client.private.env.json
 
 build/
 .gradle/
+
+.env
+local.properties
