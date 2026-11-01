@@ -1,7 +1,6 @@
 package com.example.bookmanager.protocol.client.account
 
 import com.example.bookmanager.protocol.client.HttpMethod
-import com.example.bookmanager.protocol.client.HttpRequestParams
 import com.example.bookmanager.protocol.client.HttpRequestUrl
 import com.example.bookmanager.protocol.contract.dto.account.CreateAccountRequest
 import com.example.bookmanager.protocol.contract.dto.account.CreateAccountResponse
@@ -12,7 +11,6 @@ class SignUp internal constructor(
     httpClient: HttpClient,
 ) : HttpMethod.POST<
         SignUp.SignUpRequestUrl,
-        SignUp.SignUpRequestParam,
         CreateAccountRequest,
         CreateAccountResponse
         >(
@@ -23,7 +21,4 @@ class SignUp internal constructor(
     data object SignUpRequestUrl : HttpRequestUrl {
         override fun buildUrl() = "/account"
     }
-
-    data object SignUpRequestParam : HttpRequestParams
-
 }

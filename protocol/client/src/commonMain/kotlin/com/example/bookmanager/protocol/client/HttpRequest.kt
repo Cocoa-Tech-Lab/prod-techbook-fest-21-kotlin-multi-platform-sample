@@ -11,29 +11,23 @@ interface HttpRequestUrl {
     fun buildUrl(): String
 }
 
-interface HttpRequestParams {
-    fun buildParams(): Map<String, String> = emptyMap()
-}
-
-interface HttpRequest<U : HttpRequestUrl, P : HttpRequestParams, O : ApiResponseDataField> {
+interface HttpRequest<U : HttpRequestUrl, O : ApiResponseDataField> {
     val httpClient: HttpClient
     val responseSerializer: KSerializer<O>
 
     suspend fun execute(
         url: U,
-        params: P,
         jwt: String?,
     ): ApiResponse<O>
 }
 
-interface HttpRequestHavingBody<U : HttpRequestUrl, P : HttpRequestParams, B : ApiRequestBody, O : ApiResponseDataField> {
+interface HttpRequestHavingBody<U : HttpRequestUrl, B : ApiRequestBody, O : ApiResponseDataField> {
     val httpClient: HttpClient
     val bodyKlazz: KClass<B>
     val responseSerializer: KSerializer<O>
 
     suspend fun execute(
         url: U,
-        params: P,
         body: B,
         jwt: String?,
     ): ApiResponse<O>

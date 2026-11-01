@@ -15,15 +15,12 @@ import kotlinx.serialization.decodeFromString
 import kotlin.reflect.KClass
 
 sealed interface HttpMethod {
-    abstract class GET<U : HttpRequestUrl, P : HttpRequestParams, O : ApiResponseDataField>(
+    abstract class GET<U : HttpRequestUrl, O : ApiResponseDataField>(
         override val httpClient: HttpClient,
         override val responseSerializer: KSerializer<O>,
-    ) : HttpRequest<U, P, O> {
-        override suspend fun execute(url: U, params: P, jwt: String?): ApiResponse<O> {
+    ) : HttpRequest<U, O> {
+        override suspend fun execute(url: U, jwt: String?): ApiResponse<O> {
             val response = httpClient.get(urlString = url.buildUrl()) {
-                parameters {
-                    params.buildParams().forEach(::parameter)
-                }
                 headers {
                     header(HttpHeaders.Authorization, "JWT $jwt")
                 }
@@ -39,16 +36,13 @@ sealed interface HttpMethod {
         }
     }
 
-    abstract class POST<U : HttpRequestUrl, P : HttpRequestParams, B : ApiRequestBody, O : ApiResponseDataField>(
+    abstract class POST<U : HttpRequestUrl, B : ApiRequestBody, O : ApiResponseDataField>(
         override val httpClient: HttpClient,
         override val bodyKlazz: KClass<B>,
         override val responseSerializer: KSerializer<O>,
-    ) : HttpRequestHavingBody<U, P, B, O> {
-        override suspend fun execute(url: U, params: P, body: B, jwt: String?): ApiResponse<O> {
+    ) : HttpRequestHavingBody<U, B, O> {
+        override suspend fun execute(url: U, body: B, jwt: String?): ApiResponse<O> {
             val response = httpClient.post(urlString = url.buildUrl()) {
-                parameters {
-                    params.buildParams().forEach(::parameter)
-                }
                 headers {
                     header(HttpHeaders.Authorization, "JWT $jwt")
                 }
@@ -65,16 +59,13 @@ sealed interface HttpMethod {
         }
     }
 
-    abstract class PUT<U : HttpRequestUrl, P : HttpRequestParams, B : ApiRequestBody, O : ApiResponseDataField>(
+    abstract class PUT<U : HttpRequestUrl, B : ApiRequestBody, O : ApiResponseDataField>(
         override val httpClient: HttpClient,
         override val bodyKlazz: KClass<B>,
         override val responseSerializer: KSerializer<O>,
-    ) : HttpRequestHavingBody<U, P, B, O> {
-        override suspend fun execute(url: U, params: P, body: B, jwt: String?): ApiResponse<O> {
+    ) : HttpRequestHavingBody<U, B, O> {
+        override suspend fun execute(url: U, body: B, jwt: String?): ApiResponse<O> {
             val response = httpClient.put(urlString = url.buildUrl()) {
-                parameters {
-                    params.buildParams().forEach(::parameter)
-                }
                 headers {
                     header(HttpHeaders.Authorization, "JWT $jwt")
                 }
@@ -91,16 +82,13 @@ sealed interface HttpMethod {
         }
     }
 
-    abstract class DELETE<U : HttpRequestUrl, P : HttpRequestParams, B : ApiRequestBody, O : ApiResponseDataField>(
+    abstract class DELETE<U : HttpRequestUrl, B : ApiRequestBody, O : ApiResponseDataField>(
         override val httpClient: HttpClient,
         override val bodyKlazz: KClass<B>,
         override val responseSerializer: KSerializer<O>,
-    ) : HttpRequestHavingBody<U, P, B, O> {
-        override suspend fun execute(url: U, params: P, body: B, jwt: String?): ApiResponse<O> {
+    ) : HttpRequestHavingBody<U, B, O> {
+        override suspend fun execute(url: U, body: B, jwt: String?): ApiResponse<O> {
             val response = httpClient.delete(urlString = url.buildUrl()) {
-                parameters {
-                    params.buildParams().forEach(::parameter)
-                }
                 headers {
                     header(HttpHeaders.Authorization, "JWT $jwt")
                 }
