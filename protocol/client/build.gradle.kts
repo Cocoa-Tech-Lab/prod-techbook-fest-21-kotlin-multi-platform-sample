@@ -16,7 +16,7 @@ kotlin {
     jvm()
     android {
         namespace = "com.example.bookmanager.protocol.client"
-        compileSdk = 36
+        compileSdk = 37
     }
     val xcframeworkName = "SharedClient"
     val xcf = XCFramework(xcframeworkName)
@@ -51,6 +51,10 @@ kotlin {
         androidMain.dependencies {
             // Source: https://mvnrepository.com/artifact/io.ktor/ktor-client-okhttp
             implementation(libs.ktor.client.okhttp)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
     }
 }
