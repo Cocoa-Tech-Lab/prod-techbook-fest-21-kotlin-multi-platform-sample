@@ -1,8 +1,8 @@
 package com.example.bookmanager.protocol.client
 
-import com.example.bookmanager.protocol.contract.details.ApiRequestBody
-import com.example.bookmanager.protocol.contract.details.ApiResponse
-import com.example.bookmanager.protocol.contract.details.ApiResponseDataField
+import com.example.bookmanager.protocol.contract.common.ApiRequestBody
+import com.example.bookmanager.protocol.contract.common.ApiResponse
+import com.example.bookmanager.protocol.contract.common.ApiResponseDataField
 import com.example.bookmanager.protocol.contract.jsonProcessor
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -11,7 +11,6 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.*
 import io.ktor.util.reflect.*
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.decodeFromString
 import kotlin.reflect.KClass
 
 sealed interface HttpMethod {

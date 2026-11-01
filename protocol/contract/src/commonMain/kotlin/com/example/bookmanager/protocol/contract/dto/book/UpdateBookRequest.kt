@@ -1,6 +1,6 @@
 package com.example.bookmanager.protocol.contract.dto.book
 
-import com.example.bookmanager.protocol.contract.details.ApiRequestBody
+import com.example.bookmanager.protocol.contract.common.ApiRequestBody
 import kotlinx.serialization.Serializable
 
 /**

@@ -7,8 +7,8 @@ import com.example.bookmanager.infra.config.JwtConfig
 import com.example.bookmanager.infra.di.*
 import com.example.bookmanager.presentation.routing.Router
 import com.example.bookmanager.presentation.security.AppPrincipal
-import com.example.bookmanager.protocol.contract.details.ApiResponse
-import com.example.bookmanager.protocol.contract.details.ErrorInfo
+import com.example.bookmanager.protocol.contract.common.ApiResponse
+import com.example.bookmanager.protocol.contract.common.ErrorInfo
 import com.example.bookmanager.protocol.contract.jsonProcessor
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
@@ -21,7 +21,6 @@ import io.ktor.server.plugins.di.*
 import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.resources.*
 import io.ktor.server.response.*
-import kotlinx.serialization.json.Json
 import org.flywaydb.core.Flyway
 import org.koin.dsl.module
 import org.koin.ktor.ext.inject

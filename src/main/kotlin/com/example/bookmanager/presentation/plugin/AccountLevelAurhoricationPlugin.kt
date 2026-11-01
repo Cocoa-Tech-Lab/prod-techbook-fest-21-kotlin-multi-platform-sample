@@ -2,8 +2,8 @@ package com.example.bookmanager.presentation.plugin
 
 import com.example.bookmanager.domain.model.account.AccountLevel
 import com.example.bookmanager.presentation.security.AppPrincipal
-import com.example.bookmanager.protocol.contract.details.ApiResponse
-import com.example.bookmanager.protocol.contract.details.ErrorInfo
+import com.example.bookmanager.protocol.contract.common.ApiResponse
+import com.example.bookmanager.protocol.contract.common.ErrorInfo
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*

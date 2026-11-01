@@ -1,8 +1,8 @@
 package com.example.bookmanager.protocol.client
 
-import com.example.bookmanager.protocol.contract.details.ApiRequestBody
-import com.example.bookmanager.protocol.contract.details.ApiResponse
-import com.example.bookmanager.protocol.contract.details.ApiResponseDataField
+import com.example.bookmanager.protocol.contract.common.ApiRequestBody
+import com.example.bookmanager.protocol.contract.common.ApiResponse
+import com.example.bookmanager.protocol.contract.common.ApiResponseDataField
 import io.ktor.client.*
 import kotlinx.serialization.KSerializer
 import kotlin.reflect.KClass

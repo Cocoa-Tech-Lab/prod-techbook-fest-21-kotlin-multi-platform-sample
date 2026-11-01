@@ -3,8 +3,8 @@ package com.example.bookmanager.presentation.controller
 import com.example.bookmanager.application.usecase.CreateBookUseCase
 import com.example.bookmanager.application.usecase.DeleteBookUseCase
 import com.example.bookmanager.application.usecase.UpdateBookUseCase
-import com.example.bookmanager.protocol.contract.details.ApiResponse.Success
-import com.example.bookmanager.protocol.contract.details.Empty
+import com.example.bookmanager.protocol.contract.common.ApiResponse.Success
+import com.example.bookmanager.protocol.contract.common.Empty
 import com.example.bookmanager.protocol.contract.dto.book.CreateBookRequest
 import com.example.bookmanager.protocol.contract.dto.book.CreateBookResponse
 import com.example.bookmanager.protocol.contract.dto.book.UpdateBookRequest

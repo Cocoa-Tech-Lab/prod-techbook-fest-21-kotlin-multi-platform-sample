@@ -1,4 +1,4 @@
-package com.example.bookmanager.protocol.contract.details
+package com.example.bookmanager.protocol.contract.common
 
 import kotlinx.serialization.Serializable
 
