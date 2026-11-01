@@ -1,4 +1,5 @@
 plugins {
+    alias(libs.plugins.touchlab.skie) apply false
     alias(libs.plugins.android.kotlin.multiplatform.library) apply false
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.ktor)

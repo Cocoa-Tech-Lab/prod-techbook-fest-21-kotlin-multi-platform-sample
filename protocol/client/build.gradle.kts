@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.plugin.serialization)
     alias(libs.plugins.android.kotlin.multiplatform.library)
     `maven-publish`
+    alias(libs.plugins.touchlab.skie)
 }
 
 group = "com.example.protocol"
@@ -26,6 +27,7 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = xcframeworkName
+            export(project(":protocol:contract"))
             xcf.add(this)
             isStatic = true
         }
