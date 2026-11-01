@@ -4,7 +4,7 @@ import com.example.bookmanager.application.usecase.GetBookDetailUseCase
 import com.example.bookmanager.application.usecase.ListBookUseCase
 import com.example.bookmanager.application.usecase.RentBookUseCase
 import com.example.bookmanager.application.usecase.ReturnBookUseCase
-import com.example.bookmanager.protocol.contract.details.ApiResponse
+import com.example.bookmanager.protocol.contract.common.ApiResponse
 import com.example.bookmanager.protocol.contract.dto.book.BookDetailResponse
 import com.example.bookmanager.protocol.contract.dto.book.BookSummary
 import com.example.bookmanager.protocol.contract.dto.book.ListBookSummaryResponse

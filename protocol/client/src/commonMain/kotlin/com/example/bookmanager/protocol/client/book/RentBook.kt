@@ -2,7 +2,7 @@ package com.example.bookmanager.protocol.client.book
 
 import com.example.bookmanager.protocol.client.HttpMethod
 import com.example.bookmanager.protocol.contract.route.BookRoute
-import com.example.bookmanager.protocol.contract.details.EmptyRequestBody
+import com.example.bookmanager.protocol.contract.common.EmptyRequestBody
 import com.example.bookmanager.protocol.contract.dto.book.RentBookResponse
 import io.ktor.client.*
 

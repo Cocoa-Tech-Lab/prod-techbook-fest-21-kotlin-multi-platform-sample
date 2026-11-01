@@ -1,9 +1,9 @@
 package com.example.bookmanager.protocol.client
 
 import com.example.bookmanager.protocol.contract.HttpRequestUrl
-import com.example.bookmanager.protocol.contract.details.ApiRequestBody
-import com.example.bookmanager.protocol.contract.details.ApiResponse
-import com.example.bookmanager.protocol.contract.details.ApiResponseDataField
+import com.example.bookmanager.protocol.contract.common.ApiRequestBody
+import com.example.bookmanager.protocol.contract.common.ApiResponse
+import com.example.bookmanager.protocol.contract.common.ApiResponseDataField
 import com.example.bookmanager.protocol.contract.jsonProcessor
 import io.ktor.client.*
 import io.ktor.client.call.*
