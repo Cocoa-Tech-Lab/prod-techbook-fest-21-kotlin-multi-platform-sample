@@ -128,6 +128,9 @@ sealed interface HttpMethod {
                     resource = resource,
                     urlBuilder = url
                 )
+                headers {
+                    header(HttpHeaders.Authorization, "JWT $jwt")
+                }
                 setBody(body = body, TypeInfo(bodyKlazz))
             }
             return if (response.status.isSuccess()) {
