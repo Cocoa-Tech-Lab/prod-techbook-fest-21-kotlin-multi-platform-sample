@@ -113,7 +113,6 @@ sealed interface HttpMethod {
             }
         }
     }
-
     abstract class DELETE<U: HttpRequestUrl, B : ApiRequestBody, O : ApiResponseDataField>(
         override val httpClient: HttpClient,
         override val bodyKlazz: KClass<B>,

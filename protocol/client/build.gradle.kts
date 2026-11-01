@@ -6,14 +6,14 @@ plugins {
 }
 
 group = "com.example.protocol"
-version = "0.0.1"
+version = "0.0.2"
 
 kotlin {
     jvmToolchain(17)
     jvm()
     android {
         namespace = "com.example.bookmanager.protocol.client"
-        compileSdk = 36
+        compileSdk = 37
     }
     sourceSets {
         commonMain.dependencies {

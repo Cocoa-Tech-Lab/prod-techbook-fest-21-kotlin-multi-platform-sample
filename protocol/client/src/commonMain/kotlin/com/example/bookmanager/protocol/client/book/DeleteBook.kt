@@ -1,24 +1,16 @@
 package com.example.bookmanager.protocol.client.book
 
 import com.example.bookmanager.protocol.client.HttpMethod
-import com.example.bookmanager.protocol.client.HttpRequestParams
-import com.example.bookmanager.protocol.contract.HttpRequestUrl
+import com.example.bookmanager.protocol.contract.route.BookRoute
 import com.example.bookmanager.protocol.contract.details.Empty
 import com.example.bookmanager.protocol.contract.details.EmptyRequestBody
 import io.ktor.client.*
 
 class DeleteBook internal constructor(
     httpClient: HttpClient,
-) : HttpMethod.DELETE<DeleteBook.UpdateBookDetailRequestUrl, DeleteBook.UpdateBookDetailRequestParams, EmptyRequestBody, Empty>(
+) : HttpMethod.DELETE<BookRoute.BookDetail, EmptyRequestBody, Empty>(
     httpClient = httpClient,
     bodyKlazz = EmptyRequestBody::class,
     responseSerializer = Empty.serializer(),
-) {
-    data class UpdateBookDetailRequestUrl(
-        val bookId: Int
-    ) : HttpRequestUrl {
-        override fun buildUrl(): String = "/books/$bookId"
-    }
-
-    data object UpdateBookDetailRequestParams : HttpRequestParams
-}
+    urlSerializer = BookRoute.BookDetail.serializer(),
+)
