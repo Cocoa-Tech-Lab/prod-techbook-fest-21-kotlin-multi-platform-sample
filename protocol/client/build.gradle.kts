@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+
 plugins {
     kotlin("multiplatform")
     alias(libs.plugins.kotlin.plugin.serialization)
@@ -14,6 +16,19 @@ kotlin {
     android {
         namespace = "com.example.bookmanager.protocol.client"
         compileSdk = 37
+    }
+    val xcframeworkName = "SharedClient"
+    val xcf = XCFramework(xcframeworkName)
+
+    listOf(
+        iosArm64(),
+        iosSimulatorArm64(),
+    ).forEach {
+        it.binaries.framework {
+            baseName = xcframeworkName
+            xcf.add(this)
+            isStatic = true
+        }
     }
     sourceSets {
         commonMain.dependencies {
