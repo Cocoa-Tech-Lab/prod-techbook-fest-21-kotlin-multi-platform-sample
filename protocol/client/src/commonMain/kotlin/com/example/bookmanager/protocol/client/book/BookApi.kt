@@ -1,8 +1,6 @@
 package com.example.bookmanager.protocol.client.book
 
-import com.example.bookmanager.protocol.client.account.RentalList
-import com.example.bookmanager.protocol.client.account.SignIn
-import io.ktor.client.HttpClient
+import io.ktor.client.*
 
 class BookApi internal constructor(
     httpClient: HttpClient,

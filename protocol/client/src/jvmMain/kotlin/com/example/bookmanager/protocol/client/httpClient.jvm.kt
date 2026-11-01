@@ -2,9 +2,9 @@ package com.example.bookmanager.protocol.client
 
 import com.example.bookmanager.protocol.contract.jsonProcessor
 import io.ktor.client.*
-import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.engine.okhttp.*
 import io.ktor.client.plugins.*
-import io.ktor.client.plugins.compression.ContentEncoding
+import io.ktor.client.plugins.compression.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.resources.*
 import io.ktor.http.*

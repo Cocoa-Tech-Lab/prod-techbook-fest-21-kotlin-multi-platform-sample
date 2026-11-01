@@ -35,5 +35,9 @@ kotlin {
             // Source: https://mvnrepository.com/artifact/io.ktor/ktor-client-okhttp
             implementation(libs.ktor.client.okhttp)
         }
+
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
+        }
     }
 }

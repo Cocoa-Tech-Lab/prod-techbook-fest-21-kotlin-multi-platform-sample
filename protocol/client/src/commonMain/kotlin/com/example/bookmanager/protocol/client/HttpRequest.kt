@@ -1,5 +1,6 @@
 package com.example.bookmanager.protocol.client
 
+import com.example.bookmanager.protocol.contract.HttpRequestUrl
 import com.example.bookmanager.protocol.contract.details.ApiRequestBody
 import com.example.bookmanager.protocol.contract.details.ApiResponse
 import com.example.bookmanager.protocol.contract.details.ApiResponseDataField
@@ -7,33 +8,25 @@ import io.ktor.client.*
 import kotlinx.serialization.KSerializer
 import kotlin.reflect.KClass
 
-interface HttpRequestUrl {
-    fun buildUrl(): String
-}
-
-interface HttpRequestParams {
-    fun buildParams(): Map<String, String> = emptyMap()
-}
-
-interface HttpRequest<U : HttpRequestUrl, P : HttpRequestParams, O : ApiResponseDataField> {
+interface HttpRequest<U : HttpRequestUrl, O : ApiResponseDataField> {
     val httpClient: HttpClient
     val responseSerializer: KSerializer<O>
+    val urlSerializer: KSerializer<U>
 
     suspend fun execute(
-        url: U,
-        params: P,
+        resource: U,
         jwt: String?,
     ): ApiResponse<O>
 }
 
-interface HttpRequestHavingBody<U : HttpRequestUrl, P : HttpRequestParams, B : ApiRequestBody, O : ApiResponseDataField> {
+interface HttpRequestHavingBody<U : HttpRequestUrl, B : ApiRequestBody, O : ApiResponseDataField> {
     val httpClient: HttpClient
     val bodyKlazz: KClass<B>
     val responseSerializer: KSerializer<O>
+    val urlSerializer: KSerializer<U>
 
     suspend fun execute(
-        url: U,
-        params: P,
+        resource: U,
         body: B,
         jwt: String?,
     ): ApiResponse<O>
