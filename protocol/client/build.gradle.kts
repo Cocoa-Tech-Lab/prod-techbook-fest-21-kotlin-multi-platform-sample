@@ -36,7 +36,6 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.kotlinx.serialization.core)
             implementation(libs.ktor.client.core)
-            implementation(libs.ktor.client.resources)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.client.encoding)
             implementation(libs.ktor.serialization.kotlinx.json)
