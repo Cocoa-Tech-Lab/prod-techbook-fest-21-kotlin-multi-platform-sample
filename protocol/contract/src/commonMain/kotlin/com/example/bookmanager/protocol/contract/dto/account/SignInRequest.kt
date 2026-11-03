@@ -1,0 +1,16 @@
+package com.example.bookmanager.protocol.contract.dto.account
+
+import com.example.bookmanager.protocol.contract.common.ApiRequestBody
+import kotlinx.serialization.Serializable
+
+/**
+ * サインイン（認証）用のリクエストDTO。
+ *
+ * @property email 登録済みメールアドレス
+ * @property password パスワード（平文、サーバ側で検証）
+ */
+@Serializable
+data class SignInRequest(
+    val email: String,
+    val password: String,
+): ApiRequestBody

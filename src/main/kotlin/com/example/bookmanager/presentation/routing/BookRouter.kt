@@ -3,12 +3,13 @@ package com.example.bookmanager.presentation.routing
 import com.example.bookmanager.domain.model.account.AccountLevel
 import com.example.bookmanager.presentation.controller.AdminBookController
 import com.example.bookmanager.presentation.controller.BookController
-import com.example.bookmanager.presentation.dto.book.CreateBookRequest
-import com.example.bookmanager.presentation.dto.book.UpdateBookRequest
 import com.example.bookmanager.presentation.plugin.accountLevelAuthorization
 import com.example.bookmanager.presentation.security.AppPrincipal
+import com.example.bookmanager.protocol.contract.dto.book.CreateBookRequest
+import com.example.bookmanager.protocol.contract.dto.book.UpdateBookRequest
+import com.example.bookmanager.protocol.contract.route.BookRoute
+import com.example.bookmanager.protocol.contract.route.ReturnRental
 import io.ktor.http.*
-import io.ktor.resources.*
 import io.ktor.server.application.Application
 import io.ktor.server.auth.*
 import io.ktor.server.request.*
@@ -17,7 +18,6 @@ import io.ktor.server.resources.post
 import io.ktor.server.resources.put
 import io.ktor.server.response.*
 import io.ktor.server.routing.routing
-import kotlin.uuid.Uuid
 
 /**
  * 書籍関連のエンドポイントをまとめた Router。
@@ -29,27 +29,6 @@ class BookRouter(
     private val bookController: BookController,
     private val adminBookController: AdminBookController,
 ): Router{
-    /**
-     * /books 配下の Resource 階層。
-     */
-    @Resource("/books")
-    class BookRoute{
-        /** /books/{bookId} */
-        @Resource("{bookId}")
-        class BookDetail(
-            val parent: BookRoute = BookRoute(),
-            val bookId: Int
-        ){
-            /** /books/{bookId}/rent */
-            @Resource("rent")
-            class Rent(val parent: BookDetail)
-        }
-    }
-
-    /** /rental/{rentId}/return - 貸出IDでの返却 */
-    @Resource("/rental/{rentId}/return")
-    class ReturnRental(val rentId: Uuid)
-
     override fun installRouting(app: Application){
         // 利用者向けAPI（要認証）
         app.routing {

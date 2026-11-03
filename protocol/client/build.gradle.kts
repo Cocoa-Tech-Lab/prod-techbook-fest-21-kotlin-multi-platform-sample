@@ -1,0 +1,60 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+
+plugins {
+    kotlin("multiplatform")
+    alias(libs.plugins.kotlin.plugin.serialization)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
+    `maven-publish`
+    alias(libs.plugins.touchlab.skie)
+}
+
+group = "com.example.protocol"
+version = "0.0.2"
+
+kotlin {
+    jvmToolchain(17)
+    jvm()
+    android {
+        namespace = "com.example.bookmanager.protocol.client"
+        compileSdk = 37
+    }
+    val xcframeworkName = "SharedClient"
+    val xcf = XCFramework(xcframeworkName)
+
+    listOf(
+        iosArm64(),
+        iosSimulatorArm64(),
+    ).forEach {
+        it.binaries.framework {
+            baseName = xcframeworkName
+            export(project(":protocol:contract"))
+            xcf.add(this)
+            isStatic = true
+        }
+    }
+    sourceSets {
+        commonMain.dependencies {
+            implementation(libs.kotlinx.serialization.core)
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.resources)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.client.encoding)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            api(project(":protocol:contract"))
+        }
+
+        jvmMain.dependencies {
+            // Source: https://mvnrepository.com/artifact/io.ktor/ktor-client-okhttp
+            implementation(libs.ktor.client.okhttp)
+        }
+
+        androidMain.dependencies {
+            // Source: https://mvnrepository.com/artifact/io.ktor/ktor-client-okhttp
+            implementation(libs.ktor.client.okhttp)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
+        }
+    }
+}
