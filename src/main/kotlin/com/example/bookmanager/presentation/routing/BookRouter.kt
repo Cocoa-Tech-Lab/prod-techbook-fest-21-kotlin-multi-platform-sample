@@ -3,12 +3,12 @@ package com.example.bookmanager.presentation.routing
 import com.example.bookmanager.domain.model.account.AccountLevel
 import com.example.bookmanager.presentation.controller.AdminBookController
 import com.example.bookmanager.presentation.controller.BookController
-import com.example.bookmanager.presentation.dto.book.CreateBookRequest
-import com.example.bookmanager.presentation.dto.book.UpdateBookRequest
 import com.example.bookmanager.presentation.plugin.accountLevelAuthorization
 import com.example.bookmanager.presentation.security.AppPrincipal
+import com.example.bookmanager.protocol.contract.dto.book.CreateBookRequest
+import com.example.bookmanager.protocol.contract.dto.book.UpdateBookRequest
 import io.ktor.http.*
-import io.ktor.resources.*
+import io.ktor.resources.Resource
 import io.ktor.server.application.Application
 import io.ktor.server.auth.*
 import io.ktor.server.request.*
@@ -16,6 +16,8 @@ import io.ktor.server.resources.*
 import io.ktor.server.resources.post
 import io.ktor.server.resources.put
 import io.ktor.server.response.*
+import io.ktor.server.routing.delete
+import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
 import kotlin.uuid.Uuid
 

@@ -1,0 +1,17 @@
+package com.example.bookmanager.protocol.client.book
+
+import com.example.bookmanager.protocol.client.HttpMethod
+import com.example.bookmanager.protocol.client.HttpRequestUrl
+import com.example.bookmanager.protocol.contract.dto.book.ListBookSummaryResponse
+import io.ktor.client.*
+
+class GetBookList internal constructor(
+    httpClient: HttpClient,
+) : HttpMethod.GET<GetBookList.GetBookListRequestUrl, ListBookSummaryResponse>(
+    httpClient = httpClient,
+    responseSerializer = ListBookSummaryResponse.serializer(),
+) {
+    data object GetBookListRequestUrl : HttpRequestUrl {
+        override fun buildUrl(): String = "/books"
+    }
+}

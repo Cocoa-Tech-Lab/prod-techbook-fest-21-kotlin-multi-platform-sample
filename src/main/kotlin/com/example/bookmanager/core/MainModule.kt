@@ -5,10 +5,11 @@ import com.example.bookmanager.application.exception.BookNotFound
 import com.example.bookmanager.infra.config.DataSourceConfig
 import com.example.bookmanager.infra.config.JwtConfig
 import com.example.bookmanager.infra.di.*
-import com.example.bookmanager.presentation.dto.common.ApiResponse
-import com.example.bookmanager.presentation.dto.common.ErrorInfo
 import com.example.bookmanager.presentation.routing.Router
 import com.example.bookmanager.presentation.security.AppPrincipal
+import com.example.bookmanager.protocol.contract.common.ApiResponse
+import com.example.bookmanager.protocol.contract.common.ErrorInfo
+import com.example.bookmanager.protocol.contract.jsonProcessor
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
@@ -20,7 +21,6 @@ import io.ktor.server.plugins.di.*
 import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.resources.*
 import io.ktor.server.response.*
-import kotlinx.serialization.json.Json
 import org.flywaydb.core.Flyway
 import org.koin.dsl.module
 import org.koin.ktor.ext.inject
@@ -91,9 +91,7 @@ fun Application.mainModule() {
 
     // 4. JSON シリアライゼーション設定
     install(ContentNegotiation) {
-        json(Json {
-            ignoreUnknownKeys = true // 受信JSONに未知のキーがあっても無視
-        })
+        json(jsonProcessor)
     }
 
     // 5. Authentication (JWT)

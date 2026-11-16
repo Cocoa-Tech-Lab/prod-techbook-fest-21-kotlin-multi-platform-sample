@@ -1,11 +1,11 @@
 package com.example.bookmanager.presentation.routing
 
 import com.example.bookmanager.presentation.controller.AccountController
-import com.example.bookmanager.presentation.dto.account.CreateAccountRequest
-import com.example.bookmanager.presentation.dto.account.SignInRequest
 import com.example.bookmanager.presentation.security.AppPrincipal
+import com.example.bookmanager.protocol.contract.dto.account.CreateAccountRequest
+import com.example.bookmanager.protocol.contract.dto.account.SignInRequest
 import io.ktor.http.*
-import io.ktor.resources.*
+import io.ktor.resources.Resource
 import io.ktor.server.application.Application
 import io.ktor.server.auth.*
 import io.ktor.server.request.*
@@ -13,12 +13,14 @@ import io.ktor.server.resources.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.routing
 
+
 /**
  * アカウント作成・サインイン・レンタル履歴取得を提供する Router。
  */
 class AccountRouter(
     private val accountController: AccountController,
 ): Router{
+
     @Resource("/account")
     class AccountRoute{
         /** /account/signin: サインイン（トークン発行） */

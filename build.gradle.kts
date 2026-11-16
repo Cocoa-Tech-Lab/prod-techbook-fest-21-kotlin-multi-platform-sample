@@ -1,4 +1,6 @@
 plugins {
+    alias(libs.plugins.touchlab.skie) apply false
+    alias(libs.plugins.android.kotlin.multiplatform.library) apply false
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.ktor)
     alias(libs.plugins.kotlin.plugin.serialization)
@@ -44,6 +46,9 @@ dependencies {
 
     // Argon2 password hashing
     implementation(libs.argon2.jvm)
+
+
+    implementation(project(":protocol:contract"))
 }
 
 tasks.named("run", JavaExec::class) {
