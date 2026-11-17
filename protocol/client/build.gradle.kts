@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.example.protocol"
-version = "0.0.1"
+version = "0.0.2"
 
 kotlin {
     jvmToolchain(17)
@@ -36,6 +36,7 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.kotlinx.serialization.core)
             implementation(libs.ktor.client.core)
+            implementation(libs.ktor.resources)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.client.encoding)
             implementation(libs.ktor.serialization.kotlinx.json)

@@ -92,3 +92,4 @@ build/
 
 .env
 local.properties
+.kotlin/metadata

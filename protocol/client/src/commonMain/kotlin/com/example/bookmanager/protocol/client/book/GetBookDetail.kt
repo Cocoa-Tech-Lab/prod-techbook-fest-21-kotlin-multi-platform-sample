@@ -1,19 +1,14 @@
 package com.example.bookmanager.protocol.client.book
 
 import com.example.bookmanager.protocol.client.HttpMethod
-import com.example.bookmanager.protocol.client.HttpRequestUrl
+import com.example.bookmanager.protocol.contract.route.BookRoute
 import com.example.bookmanager.protocol.contract.dto.book.BookDetailResponse
 import io.ktor.client.*
 
 class GetBookDetail internal constructor(
     httpClient: HttpClient,
-) : HttpMethod.GET<GetBookDetail.GetBookDetailRequestUrl, BookDetailResponse>(
+) : HttpMethod.GET<BookRoute.BookDetail, BookDetailResponse>(
     httpClient = httpClient,
     responseSerializer = BookDetailResponse.serializer(),
-) {
-    data class GetBookDetailRequestUrl(
-        val bookId: Int
-    ) : HttpRequestUrl {
-        override fun buildUrl(): String = "/books/$bookId"
-    }
-}
+    urlSerializer = BookRoute.BookDetail.serializer()
+)
